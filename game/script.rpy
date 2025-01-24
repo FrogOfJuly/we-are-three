@@ -3,12 +3,23 @@
 # Declare characters used by this game. The color argument colorizes the
 # name of the character.
 
-define e = Character("Eileen")
+# define e = Character("Eileen")
 
+init python: 
+    # Simple namespace to combat the fact 
+    # that all variables in ren'py are global
+    class Namespace(dict):
+        def __init__(self, *args, **kwargs):
+            super(Namespace, self).__init__(*args, **kwargs)
+            self.__dict__ = self
+
+    state = Namespace()
 
 # The game starts here.
 
 label start:
+
+    $ state.awakening = Namespace()
 
     scene bg room
 
@@ -24,7 +35,7 @@ label start:
         "Wake up":
             jump awake
         "Rest":
-            "Slumber persists a little longer..."
+            "Slumber persists for a little longer..."
             jump slumber
 
     label awake:
@@ -36,19 +47,19 @@ label start:
     You feel fingers on your neck, they are cold and inhospitable. 
     """
 
-    $ moved = False
-    $ talked = False
+    $ state.awakening.moved = False
+    $ state.awakening.talked = False
 
     label first_actions:
     
     menu: 
-        "Move" if not moved:
+        "Move" if not state.awakening.moved:
             "You try to move your limbs, but pain is so strong, you can't actually feel if they obey your commands."
-            $ moved = True
+            $ state.awakening.moved = True
             jump first_actions
-        "Try to say something" if not talked:
+        "Say something" if not state.awakening.talked:
             "You try to say something, but only dry rattle comes out of your mouth."
-            $ talked = True
+            $ state.awakening.talked = True
             jump first_actions
         
         "Give up":
@@ -56,6 +67,6 @@ label start:
 
     label sleep:
 
-    "Your conciousness wanders away"
+    "Your conciousness wonders away"
         
     return
