@@ -8,6 +8,7 @@
 init python: 
     # Simple namespace to combat the fact 
     # that all variables in ren'py are global
+    # Go here for insight: https://stackoverflow.com/questions/4984647/accessing-dict-keys-like-an-attribute
     class Namespace(dict):
         def __init__(self, *args, **kwargs):
             super(Namespace, self).__init__(*args, **kwargs)
