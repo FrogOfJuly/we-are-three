@@ -4,3 +4,4 @@ log.txt
 game/saves
 game/cache
 game/**/*.rpyc
+game/**/*.rpyb
