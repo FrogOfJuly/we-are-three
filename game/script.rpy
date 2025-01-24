@@ -10,24 +10,52 @@ define e = Character("Eileen")
 
 label start:
 
-    # Show a background. This uses a placeholder by default, but you can
-    # add a file (named either "bg room.png" or "bg room.jpg") to the
-    # images directory to show it.
-
     scene bg room
 
-    # This shows a character sprite. A placeholder is used, but you can
-    # replace it by adding a file named "eileen happy.png" to the images
-    # directory.
+    """
+    You were ill and you went to sleep. They promised cure in twenty years. 
 
-    show eileen happy
+    Now, after almost a hundred years in slumber, you are about to wake up in an unfamiliar world.     
+    """
 
-    # These display lines of dialogue.
+    label slumber:
+    
+    menu:
+        "Wake up":
+            jump awake
+        "Rest":
+            "Slumber persists a little longer..."
+            jump slumber
 
-    e "You've created a new Ren'Py game."
+    label awake:
+    """
+    You feel pain. 
 
-    e "Once you add a story, pictures, and music, you can release it to the world!"
+    You try to open your eyes, but the darkness around is impenetrable. 
+    
+    You feel fingers on your neck, they are cold and inhospitable. 
+    """
 
-    # This ends the game.
+    $ moved = False
+    $ talked = False
 
+    label first_actions:
+    
+    menu: 
+        "Move" if not moved:
+            "You try to move your limbs, but pain is so strong, you can't actually feel if they obey your commands."
+            $ moved = True
+            jump first_actions
+        "Try to say something" if not talked:
+            "You try to say something, but only dry rattle comes out of your mouth."
+            $ talked = True
+            jump first_actions
+        
+        "Give up":
+            jump sleep
+
+    label sleep:
+
+    "Your conciousness wanders away"
+        
     return
