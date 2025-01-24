@@ -32,42 +32,41 @@ label start:
 
     label slumber:
     
-    menu:
-        "Wake up":
-            jump awake
-        "Rest":
-            "Slumber persists for a little longer..."
-            jump slumber
+        menu:
+            "Rest":
+                "Slumber persists for a little longer..."
+                jump slumber
+            "Wake up":
+                pass
 
-    label awake:
-    """
-    You feel pain. 
+        """
+        You feel pain. 
 
-    You try to open your eyes, but the darkness around is impenetrable. 
-    
-    You feel fingers on your neck, they are cold and inhospitable. 
-    """
-
-    $ state.awakening.moved = False
-    $ state.awakening.talked = False
-
-    label first_actions:
-    
-    menu: 
-        "Move" if not state.awakening.moved:
-            "You try to move your limbs, but pain is so strong, you can't actually feel if they obey your commands."
-            $ state.awakening.moved = True
-            jump first_actions
-        "Say something" if not state.awakening.talked:
-            "You try to say something, but only dry rattle comes out of your mouth."
-            $ state.awakening.talked = True
-            jump first_actions
+        You try to open your eyes, but the darkness around is impenetrable. 
         
-        "Give up":
-            jump sleep
+        You feel fingers on your neck, they are cold and inhospitable. 
+        """
 
-    label sleep:
+        $ state.awakening.moved = False
+        $ state.awakening.talked = False
 
-    "Your conciousness wonders away"
+        label .struggle:
         
-    return
+            menu: 
+                "Move" if not state.awakening.moved:
+                    "You try to move your limbs, but pain is so strong, you can't actually feel if they obey your commands."
+                    $ state.awakening.moved = True
+                    jump .struggle
+                "Say something" if not state.awakening.talked:
+                    "You try to say something, but only dry rattle comes out of your mouth."
+                    $ state.awakening.talked = True
+                    jump .struggle
+                "Give up":
+                    pass
+
+        "Your conciousness wonders away"
+
+        # TODO: Here should be a fade to black with a
+        # considerable delay to signify passage of time
+            
+        jump luddic_HQ
