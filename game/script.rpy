@@ -6,7 +6,9 @@
 # define e = Character("Eileen")
 
 init python: 
-    # Simple namespace to combat the fact 
+    from collections import namedtuple
+
+    # Simple namespace hack to combat the fact 
     # that all variables in ren'py are global
     # Go here for insight: https://stackoverflow.com/questions/4984647/accessing-dict-keys-like-an-attribute
     class Namespace(dict):
@@ -23,6 +25,8 @@ label start:
     $ state.awakening = Namespace()
 
     scene bg room
+
+    jump sleepers_station
 
     """
     You were ill and you went to sleep. They promised cure in twenty years. 
@@ -70,3 +74,6 @@ label start:
         # considerable delay to signify passage of time
             
         jump luddic_HQ
+
+label the_end:
+    return
