@@ -159,6 +159,13 @@ label sleepers_station:
                     $ state.sleepers_station.load += it.weight
                     $ del items["bk"]
                     jump .equipment_choice
+                
+                "Leave bolt cutter" if "bk" not in items:
+                    $ it = state.sleepers_station.equipment["Bolt cutter"]
+                    $ items["bk"] = it
+                    $ state.sleepers_station.load -= it.weight
+                    $ del state.sleepers_station.equipment["Bolt cutter"]
+                    jump .equipment_choice
 
                 "Bring plasma torch" if "torch" in items:
                     $ it = items["torch"]
@@ -166,12 +173,28 @@ label sleepers_station:
                     $ state.sleepers_station.load += it.weight
                     $ del items["torch"]
                     jump .equipment_choice
+
+                "Leave plasma torch" if "torch" not in items:
+                    $ it = state.sleepers_station.equipment["Plasma torch"]
+                    $ items["torch"] = it
+                    $ state.sleepers_station.load -= it.weight
+                    $ del state.sleepers_station.equipment["Plasma torch"]
+
+                    jump .equipment_choice
                 
-                "Bring plasma explosives" if "expl" in items:
+                "Bring explosives" if "expl" in items:
                     $ it = items["expl"]
                     $ state.sleepers_station.equipment[it.name] = it
                     $ state.sleepers_station.load += it.weight
                     $ del items["expl"]
+                    jump .equipment_choice
+
+                "Leave explosives" if "expl" not in items:
+                    $ it = state.sleepers_station.equipment["Explosives"]
+                    $ items["expl"] = it
+                    $ state.sleepers_station.load -= it.weight
+                    $ del state.sleepers_station.equipment["Explosives"]
+
                     jump .equipment_choice
 
                 "Bring metal-cutting saw" if "m_saw" in items:
@@ -179,6 +202,14 @@ label sleepers_station:
                     $ state.sleepers_station.equipment[it.name] = it
                     $ state.sleepers_station.load += it.weight
                     $ del items["m_saw"]
+                    jump .equipment_choice
+
+
+                "Leave metal-cutting saw" if "m_saw" not in items:
+                    $ it = state.sleepers_station.equipment["Metal-cutting saw"]
+                    $ items["m_saw"] = it
+                    $ state.sleepers_station.load -= it.weight
+                    $ del state.sleepers_station.equipment["Metal-cutting saw"]
                     jump .equipment_choice
                 
                 "Go already!" if not bool(items):
