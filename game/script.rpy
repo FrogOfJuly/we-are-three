@@ -7,16 +7,19 @@
 
 init python: 
     from collections import namedtuple
+    #  from types import SimpleNamespace - does not work, as dict and objects are overloaded in ren'py
 
     # Simple namespace hack to combat the fact 
     # that all variables in ren'py are global
     # Go here for insight: https://stackoverflow.com/questions/4984647/accessing-dict-keys-like-an-attribute
-    class Namespace(dict):
+    
+    class Namespace(MultiRevertable, dict, object):
         def __init__(self, *args, **kwargs):
             super(Namespace, self).__init__(*args, **kwargs)
             self.__dict__ = self
 
-    state = Namespace()
+
+default state = Namespace()
 
 # The game starts here.
 

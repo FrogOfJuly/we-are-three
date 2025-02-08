@@ -23,10 +23,10 @@ label sleepers_station:
     most likely the station was designed for asteroid surveys and later found herself involved in some kind of settling effort.
     """
 
-    # What does the station look like?
-
     show station at top
     with dissolve
+
+    # TODO: creepiness needed
 
     """
     There are no heat signatures visible. Engines are long dead, power source and life-systems are offline. 
@@ -68,9 +68,7 @@ label sleepers_station:
 
         It could either be a scavenger, armed and ready to fight you for the loot, or a passerby who might notify authorities of your findings. 
         Space is an awful place to hide and once travelled to, this station is doomed to be looted for valuables at first and resmelted for metals later. 
-        """
-
-        """
+        
         Do you want to perform scans and gather information before boarding? 
 
         Remember, they all take time. 
@@ -81,8 +79,8 @@ label sleepers_station:
 
             state.sleepers_station.compartment_mapping = False
             state.sleepers_station.coarse_thermal_scan = False
-            state.sleepers_station.fine_thermal_scan = False
-            state.sleepers_station.stress_analysis = False
+            state.sleepers_station.fine_thermal_scan    = False
+            state.sleepers_station.stress_analysis     = False
 
 
         label .preliminary_information_gathering:
@@ -129,17 +127,19 @@ label sleepers_station:
 
         "What do want to take with you?"
         
-        python: 
-            state.sleepers_station.equipment = {}
-            state.sleepers_station.carrying_capacity  = 50 # kg
-            state.sleepers_station.load = 0 # kg
-            state.sleepers_station.time_spent = 0 # hours
+        default Item = namedtuple('Item', 'name weight charges')  
 
-            Item = namedtuple('Item', 'name weight charges')
+        python: 
+            state.sleepers_station.equipment         = {}
+            state.sleepers_station.carrying_capacity = 50 # kg
+            state.sleepers_station.load              = 0  # kg
+            state.sleepers_station.time_spent        = 0  # hours
             items = { "bk"    : Item("Bolt cutter", 5, None)
                     , "torch" : Item("Plasma torch", 15, 10)
                     , "m_saw" : Item("Metal-cutting saw", 20, None)
                     , "expl"  : Item("Explosives", 10, 3)}
+            it = None
+            rem = None
 
         label .equipment_choice:
             python: 
