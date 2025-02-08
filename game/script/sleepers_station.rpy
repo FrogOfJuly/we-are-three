@@ -93,7 +93,7 @@ label sleepers_station:
                     $ state.sleepers_station.compartment_mapping = True
                     show station roommap
                     with dissolve
-                    "Mapping is complete"
+                    # "Mapping is complete"
                     jump .preliminary_information_gathering
                 "Do coarse thermal scanning" if "c_th_scan" in state.sleepers_station.scans:
                     $ state.sleepers_station.scans.remove("c_th_scan")
@@ -105,7 +105,7 @@ label sleepers_station:
                     $ state.sleepers_station.fine_thermal_scan = True
                     show station fineheatmap
                     with dissolve
-                    "Fine thermal scan is complete: significant gradients found in several compartments"
+                    # "Fine thermal scan is complete: significant gradients found in several compartments"
                     jump .preliminary_information_gathering
                 "Do radiation emission scan" if "radiation" in state.sleepers_station.scans:
                     $ state.sleepers_station.scans.remove("radiation")
@@ -117,7 +117,7 @@ label sleepers_station:
                     $ state.sleepers_station.stress_analysis = True
                     show station stress
                     with dissolve
-                    "Hull stress is mapped: significant stress found, multiple punctures and forced doors"
+                    # "Hull stress is mapped: significant stress found, multiple punctures and forced doors"
                     jump .preliminary_information_gathering
                 "Continue with boarding":
                     pass
