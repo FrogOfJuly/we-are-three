@@ -12,16 +12,39 @@ label sleepers_station:
         attribute roommap
         attribute stress
 
-    """
+    scene black
+
+    nvl_narrator """
     Your ship matches velocity with a station. 
     
-    The ship database could not find any matches for codes on the hull, meaning that this metal structure ages close to a century. 
+    Loneliness of the journey took it's toll on you. A thought about venturing into this lifeless carcass fills you with anxiety. 
     
-    Indeed before the core ban.
+    The ship database could not find any matches for codes on the hull, meaning that this metal structure ages close to a century. 
+    """
+    
+    nvl_narrator """
+    \n
+    Indeed before the core ban. 
+    \n
+    """
+
+    nvl_narrator"""
+    
+    The station is a deceivingly promising find, almost too good to be true. You feel the wave of excitement rushing though you.
+
+    However, more somber thoughts pass through your mind. 
+    
+    How is it that nobody found it before you?
+
+    Why is it so intact?
 
     It's purpose is not apparent, but judging by visible signs of repurposing, 
     most likely the station was designed for asteroid surveys and later found herself involved in some kind of settling effort.
+
+    Still occupied by uneasy thoughts about structural failures and decay-formed traps you approach the control panel of your ship.
     """
+
+    nvl clear
 
     show station at top
     with dissolve
@@ -32,8 +55,6 @@ label sleepers_station:
     There are no heat signatures visible. Engines are long dead, power source and life-systems are offline. 
     It seems like a space suite is mandatory for the exploration.
     """
-
-
 
     # TODO: Should here be an option for abandoning exploration?
 
@@ -64,14 +85,9 @@ label sleepers_station:
         """
         The station is yours to explore. However, you are but a one human. Your time is limited by the fact that your ship can be detected and followed. 
         
-        If you spend here too much time, you can have company. 
-
-        It could either be a scavenger, armed and ready to fight you for the loot, or a passerby who might notify authorities of your findings. 
-        Space is an awful place to hide and once travelled to, this station is doomed to be looted for valuables at first and resmelted for metals later. 
+        If you spend here too much time, you can have company. Likely scavenger, ready to fight for the loot, or a patrol from Terminus which will arrest you on sight. 
         
         Do you want to perform scans and gather information before boarding? 
-
-        Remember, they all take time. 
         """
 
         python:
