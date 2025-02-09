@@ -20,28 +20,16 @@ label sleepers_station:
     Loneliness of the journey took it's toll on you. A thought about venturing into this lifeless carcass fills you with anxiety. 
     
     The ship database could not find any matches for codes on the hull, meaning that this metal structure ages close to a century. 
-    """
-    
-    nvl_narrator """
-    \n
-    Indeed before the core ban. 
-    \n
-    """
 
-    nvl_narrator"""
-    
+    \nIndeed before the core ban.\n
+     
     The station is a deceivingly promising find, almost too good to be true. You feel the wave of excitement rushing though you.
 
     However, more somber thoughts pass through your mind. 
     
-    How is it that nobody found it before you?
+    \nHow is it that nobody found it before you?\n
 
-    Why is it so intact?
-
-    It's purpose is not apparent, but judging by visible signs of repurposing, 
-    most likely the station was designed for asteroid surveys and later found herself involved in some kind of settling effort.
-
-    Still occupied by uneasy thoughts about structural failures and decay-formed traps you approach the control panel of your ship.
+    Why is it so intact?\n
     """
 
     nvl clear
@@ -49,9 +37,16 @@ label sleepers_station:
     show station at top
     with dissolve
 
+    ""
+
     # TODO: creepiness needed
 
-    """
+    nvl_narrator """
+    It's purpose is not apparent, but judging by visible signs of repurposing, 
+    most likely the station was designed for asteroid surveys and later found herself involved in some kind of settling effort.
+
+    Still occupied by uneasy thoughts about structural failures and decay-formed traps you approach the control panel of your ship.
+
     There are no heat signatures visible. Engines are long dead, power source and life-systems are offline. 
     It seems like a space suite is mandatory for the exploration.
     """
