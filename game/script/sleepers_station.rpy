@@ -17,15 +17,15 @@ label sleepers_station:
     nvl_narrator """
     Your ship matches velocity with a station. 
     
-    Loneliness of the journey took it's toll on you. A thought about venturing into this lifeless carcass fills you with anxiety. 
+    Loneliness of the journey took it's toll on you: a mere thought about venturing into this lifeless carcass fills you with anxiety. 
     
-    The ship database could not find any matches for codes on the hull, meaning that this metal structure ages close to a century. 
+    The database on your ship could not find any matches for codes on the hull, meaning that this metal structure ages close to a century. 
 
     \nIndeed before the core ban.\n
      
-    The station is a deceivingly promising find, almost too good to be true. You feel the wave of excitement rushing though you.
+    The station is a deceivingly promising find, you feel the wave of excitement rushing though you.
 
-    However, more somber thoughts pass through your mind. 
+    However, more somber thoughts pass through your mind as well. 
     
     \nHow is it that nobody found it before you?\n
 
@@ -45,7 +45,7 @@ label sleepers_station:
     It's purpose is not apparent, but judging by visible signs of repurposing, 
     most likely the station was designed for asteroid surveys and later found herself involved in some kind of settling effort.
 
-    Still occupied by uneasy thoughts about structural failures and decay-formed traps you approach the control panel of your ship.
+    Still occupied by uneasy thoughts about structural failures and decay-formed traps, you approach the control panel of your ship.
 
     There are no heat signatures visible. Engines are long dead, power source and life-systems are offline. 
     It seems like a space suite is mandatory for the exploration.
@@ -78,9 +78,9 @@ label sleepers_station:
 
     label .alone:
         """
-        The station is yours to explore. However, you are but a one human. Your time is limited by the fact that your ship can be detected and followed. 
+        The station is yours to explore. However, you are but a single human. Your time is limited by the fact that your ship could have been detected and followed. 
         
-        If you spend here too much time, you can have company. Likely scavenger, ready to fight for the loot, or a patrol from Terminus which will arrest you on sight. 
+        If you spend here too much time, you might have company. Likely scavenger, ready to fight for the loot, or a patrol from Terminus which will immediately arrest you at best. 
         
         Do you want to perform scans and gather information before boarding? 
         """
@@ -233,6 +233,13 @@ label sleepers_station:
                 del rem
                 del it
                 del items
+
+
+        """
+        The only safe place to dock is the front-most point the the station. 
+        
+        There is a standard emergency hatch that despite passed time, is the same as on your ship. 
+        """
 
         jump the_end
 
