@@ -235,11 +235,64 @@ label sleepers_station:
                 del items
 
 
-        """
+        nvl_narrator """
         The only safe place to dock is the front-most point the the station. 
         
-        There is a standard emergency hatch that despite passed time, is the same as on your ship. 
+        There is a standard emergency hatch that despite great age, is the same as on your ship. 
         """
+
+        nvl clear
+        
+        # Need some place to show all the information that suit shows
+
+        """
+        In the light of your flash light the space behind the hatch turns out to be a small sphere-shaped room.\n
+        It is barely large enough for you to fit at full height.\n
+        Your arm is on the handle near the entrance, keeping your body from drifting forward.\n
+        The door to the next section is located on your left.
+        """
+
+        
+        
+        $ looked_around = False
+        label .exploring_crow_nest:    
+            
+            menu(nvl=True): 
+                "Look around" if not looked_around:
+                    
+                    $ looked_around = True
+                    nvl_narrator """
+                    Behind you is the hatch you entered through.
+
+                    Above your head you see wiring for an utilities and ancient climate control system.\n
+                    They look intact.
+
+                    Structure of the bearing parts on your right form a hexagonal mesh that makes a reinforced illuminator.\n
+                    The blackness of space consumes your light through the thin ice patterns on the glass.
+
+                    Below your feet you see some formless mass of items that sparkle as you point light towards them.
+                    """
+                    jump .exploring_crow_nest
+                "Explore illuminator" if looked_around:
+                    
+                    nvl_narrator """
+                    Patterns on the glass obscure the cosmic abyss that stares at you from outside the ship.
+                    
+                    Tiny dots of light are only highlighting the blackness around them.
+                    """
+                    jump .exploring_crow_nest
+
+                "Explore frosted items" if looked_around:
+                    
+                    nvl_narrator """
+                    First body?
+                    """
+                    jump .exploring_crow_nest
+
+                "Proceed":
+                    pass
+
+
 
         jump the_end
 
