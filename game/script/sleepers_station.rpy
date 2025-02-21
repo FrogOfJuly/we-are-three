@@ -42,6 +42,7 @@ label sleepers_station:
     # TODO: creepiness needed
 
     nvl_narrator """
+
     It's purpose is not apparent, but judging by visible signs of repurposing, 
     most likely the station was designed for asteroid surveys and later found herself involved in some kind of settling effort.
 
@@ -50,6 +51,8 @@ label sleepers_station:
     There are no heat signatures visible. Engines are long dead, power source and life-systems are offline. 
     It seems like a space suite is mandatory for the exploration.
     """
+
+    nvl clear
 
     # TODO: Should here be an option for abandoning exploration?
 
@@ -239,38 +242,38 @@ label sleepers_station:
         The only safe place to dock is the front-most point the the station. 
         
         There is a standard emergency hatch that despite great age, is the same as on your ship. 
-        """
-
-        nvl clear
         
-        # Need some place to show all the information that suit shows
+        In the light of your flash light the space behind the hatch turns out to be a small sphere-shaped room.
 
-        """
-        In the light of your flash light the space behind the hatch turns out to be a small sphere-shaped room.\n
-        It is barely large enough for you to fit at full height.\n
-        Your arm is on the handle near the entrance, keeping your body from drifting forward.\n
+        It is barely large enough for you to fit at full height.
+
+        Your arm is on the handle near the entrance, keeping your body from drifting forward.
+
         The door to the next section is located on your left.
         """
 
         
         
         $ looked_around = False
+        $ inspected_bodies  = False
+        $ state.sleepers_station.found_bodies = False
+        
         label .exploring_crow_nest:    
             
             menu(nvl=True): 
                 "Look around" if not looked_around:
-                    
+
                     $ looked_around = True
                     nvl_narrator """
                     Behind you is the hatch you entered through.
 
-                    Above your head you see wiring for an utilities and ancient climate control system.\n
+                    Above your head you see wiring for utilities and an ancient climate control system.\n
                     They look intact.
 
                     Structure of the bearing parts on your right form a hexagonal mesh that makes a reinforced illuminator.\n
                     The blackness of space consumes your light through the thin ice patterns on the glass.
 
-                    Below your feet you see some formless mass of items that sparkle as you point light towards them.
+                    Below your feet you see some formless mass of items that unevenly sparkles as you point the light towards it.
                     """
                     jump .exploring_crow_nest
                 "Explore illuminator" if looked_around:
@@ -278,21 +281,56 @@ label sleepers_station:
                     nvl_narrator """
                     Patterns on the glass obscure the cosmic abyss that stares at you from outside the ship.
                     
-                    Tiny dots of light are only highlighting the blackness around them.
+                    Tiny dots of light are only highlighting the blackness around them. 
                     """
                     jump .exploring_crow_nest
 
-                "Explore frosted items" if looked_around:
+                "Explore frosted items" if looked_around and not state.sleepers_station.found_bodies:
+
+                    nvl clear
                     
                     nvl_narrator """
-                    First body?
+                    
+                    Long frozen tissue breaks upon touch, exposing couple of what looks like some kind of wrapped parcel. 
+                    
+                    You take out the knife and cut the wrapping only to be greeted by marble surface of human skin.
+
+                    The formless mess now makes much more sense, judging by the size, there are at least three bodies wrapped in blankets frozen together.
+
                     """
+
+                    $ state.sleepers_station.found_bodies = True
+
+                    jump .exploring_crow_nest
+
+                "Inspect the bodies" if state.sleepers_station.found_bodies and not inspected_bodies:
+                    # TODO: describe uniform?
+
+                    nvl_narrator """
+
+                    You remove the blankets. The space around you is instantly full of reddish ice crystals that shine in the light from your spacesuit.
+                    
+                    There are four bodies bound together by the fragile structure of frozen blood. Three of them are intact. 
+
+                    One of them has the crude steel rod sticking out of the visor, the other two have the same rods in the chest and abdomen. 
+
+                    The last body misses whole lower part. 
+
+                    """
+
+                    $ inspected_bodies = True
+
+                    jump .exploring_crow_nest
+
+                "Loot the bodies" if inspected_bodies:
+                    nvl_narrator """
+                    You can't bring yourself to touch them.
+                    """
+
                     jump .exploring_crow_nest
 
                 "Proceed":
                     pass
-
-
 
         jump the_end
 
